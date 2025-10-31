@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimLover - Sistema de Requisição</title>
+    <link rel="stylesheet" href="simlover-style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <span class="logo-simlover">SimLover</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="welcome-message">
+            <h2>Fale Conosco</h2>
+            <p>Solicite informações sobre impressoras, serviços e soluções</p>
+        </div>
+
+        <form action="processa-requisicao.php" method="POST" class="simlover-form">
+            <div class="form-section">
+                <h3>Informações do Solicitante</h3>
+                <div class="form-group">
+                    <label for="nome">Nome / Empresa:</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Seu nome completo ou empresa">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" required placeholder="(11) 99999-9999">
+                </div>
+                <div class="form-group">
+                    <label for="data">Data da Solicitação:</label>
+                    <input type="date" id="data" name="data" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Local e Departamento</h3>
+                <div class="form-group">
+                    <label for="localizacao">Localização:</label>
+                    <select id="localizacao" name="localizacao" onchange="toggleOutroLocal()" required>
+                        <option value="">Selecione a localização</option>
+                        <option value="Galpão 1">Galpão 1</option>
+                        <option value="Galpão 2">Galpão 2</option>
+                        <option value="outro">Outros</option>
+                    </select>
+                    <div id="outro-local-container" style="display: none;">
+                        <input type="text" id="outro-local" name="outro-local" 
+                               placeholder="Especifique a localização" class="outro-input">
+                    </div>
+                </div>
+
+                <div id="department-container" class="form-group">
+                    <label for="departamento">Departamento:</label>
+                    <select id="departamento" name="departamento" required>
+                        <option value="">Selecione o departamento</option>
+                        <option value="Laboratório MPS">Laboratório MPS</option>
+                        <option value="Laboratório SAAS">Laboratório SAAS</option>
+                        <option value="Engenharia">Engenharia</option>
+                        <option value="Estoque">Estoque</option>
+                    </select>
+                </div>
+
+                <div id="company-container" style="display: none;">
+                    <div class="form-group">
+                        <label for="empresa">Nome da empresa / Responsável:</label>
+                        <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa ou responsável">
+                    </div>
+                    <div class="form-group">
+                        <label for="endereco">Endereço:</label>
+                        <input type="text" id="endereco" name="endereco" placeholder="Endereço completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="contato">Telefone de contato (opcional):</label>
+                        <input type="tel" id="contato" name="contato" placeholder="(11) 99999-9999">
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function toggleOutroLocal() {
+                    const localizacao = document.getElementById('localizacao').value;
+                    const outroLocalContainer = document.getElementById('outro-local-container');
+                    const outroLocalInput = document.getElementById('outro-local');
+                    const deptContainer = document.getElementById('department-container');
+                    const companyContainer = document.getElementById('company-container');
+                    const servicesContainer = document.getElementById('services-container');
+                    const departamentoSelect = document.getElementById('departamento');
+                    const servicoSelect = document.getElementById('servico');
+
+                    if (localizacao === 'outro') {
+                        // mostrar campos adicionais e esconder departamento/serviços
+                        outroLocalContainer.style.display = 'block';
+                        outroLocalInput.required = true;
+
+                        deptContainer.style.display = 'none';
+                        if (departamentoSelect) departamentoSelect.required = false;
+
+                        companyContainer.style.display = 'block';
+
+                        if (servicesContainer) {
+                            servicesContainer.style.display = 'none';
+                            if (servicoSelect) servicoSelect.required = false;
+                        }
+                    } else {
+                        outroLocalContainer.style.display = 'none';
+                        outroLocalInput.required = false;
+
+                        deptContainer.style.display = 'block';
+                        if (departamentoSelect) departamentoSelect.required = true;
+
+                        companyContainer.style.display = 'none';
+
+                        if (servicesContainer) {
+                            servicesContainer.style.display = 'block';
+                            if (servicoSelect) servicoSelect.required = true;
+                        }
+                    }
+                }
+                // Inicializa o estado ao carregar
+                document.addEventListener('DOMContentLoaded', function(){
+                    toggleOutroLocal();
+                });
+            </script>
+
+            <div class="form-section">
+                <h3>🖨️ Detalhes da Requisição</h3>
+                <div id="services-container">
+                <div class="form-group">
+                    <label for="servico">Serviços solicitados:</label>
+                    <select id="servico" name="servico" required>
+                        <option value="">Selecione uma opção</option>
+                        <option value="impressoras">Impressoras</option>
+                        <option value="manutencao">Suporte e manutenção</option>
+                        <option value="locacao">Locação de equipamentos</option>
+                        <option value="consumiveis">Consumíveis (toners)</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="codigo_peca">Ex: CF280A (Toner HP 80A)</label>
+                    <input type="text" id="codigo_peca" name="codigo_peca" required 
+                           placeholder="Ex: CF280A">
+                </div>
+
+                <div class="form-group">
+                    <label for="quantidade">Quantidade necessária:</label>
+                    <input type="number" id="quantidade" name="quantidade" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pod">POD de referência:</label>
+                    <input type="text" id="pod" name="pod" required 
+                           placeholder="Número do POD">
+                </div>
+
+                <div class="form-group">
+                    <label for="justificativa">Informações adicionais:</label>
+                    <textarea id="justificativa" name="justificativa" rows="3" required 
+                            placeholder="Descreva detalhes adicionais sobre sua solicitação"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="terms">
+                    <input type="checkbox" id="termos" name="termos" required>
+                    <label for="termos">Autorizo o contato para tratar desta solicitação</label>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Enviar solicitação</button>
+                <button type="reset" class="btn-clean">Limpar</button>
+            </div>
+            <p class="form-info">Em caso de dúvidas ou feedback, você deverá entrar em contato com a equipe de suporte.</p>
+        </form>
+    </div>
+
+    <footer class="simlover-footer">
+        <p>SimLover - Inspirado na excelência Simpress © 2025</p>
+    </footer>
+</body>
+</html>

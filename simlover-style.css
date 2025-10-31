@@ -1,0 +1,328 @@
+:root {
+    --primary-color: #009688;
+    --primary-dark: #00796b;
+    --secondary-color: #2196f3;
+    --secondary-dark: #1976d2;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --background-color: #ffffff;
+    --text-color: #333;
+    --border-radius: 4px;
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.header {
+    background-color: #fff;
+    padding: 1rem 0;
+    text-align: left;
+    margin-bottom: 1rem;
+    box-shadow: none;
+}
+
+.header img {
+    max-height: 40px;
+}
+
+.logo-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.logo-container h1 span {
+    color: var(--secondary-color);
+}
+
+.slogan {
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.welcome-message {
+    background-color: white;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    text-align: left;
+    box-shadow: none;
+}
+
+.welcome-message h2 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.welcome-message p {
+    color: #666;
+    font-size: 1rem;
+}
+
+.simlover-form {
+    background-color: white;
+    padding: 1rem 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.logo-simlover {
+    background-color: var(--primary-color);
+    color: white;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.form-section {
+    margin-bottom: 2rem;
+    background-color: transparent;
+}
+
+.form-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    transition: border-color 0.3s;
+    background-color: #fff;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1em;
+    padding-right: 2rem;
+}
+
+.outro-input {
+    margin-top: 0.5rem;
+}
+
+/* Estilo para campos inválidos */
+input:invalid,
+select:invalid,
+textarea:invalid {
+    border-color: #dc3545;
+}
+
+/* Estilo para campos válidos */
+input:valid:not(:placeholder-shown),
+select:valid:not(:placeholder-shown),
+textarea:valid:not(:placeholder-shown) {
+    border-color: #28a745;
+}
+
+.radio-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.radio-card {
+    position: relative;
+}
+
+.radio-card input[type="radio"] {
+    display: none;
+}
+
+.radio-card label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.radio-card .icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.radio-card input[type="radio"]:checked + label {
+    border-color: var(--primary-color);
+    background-color: rgba(0, 102, 204, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+button {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-submit {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-clean {
+    background-color: transparent;
+    color: #666;
+}
+
+.btn-clean:hover {
+    background-color: #f0f0f0;
+}
+
+.terms {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.terms input[type="checkbox"] {
+    margin: 0;
+}
+
+.terms label {
+    margin: 0;
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+.form-info {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.simlover-footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+    background-color: #333;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0.5rem;
+    }
+
+    .form-section {
+        padding: 1rem;
+    }
+
+    .radio-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.welcome-message,
+.form-section {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.form-section:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.form-section:nth-child(3) {
+    animation-delay: 0.2s;
+}

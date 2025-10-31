@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimLover - Requisição Enviada</title>
+    <link rel="stylesheet" href="simlover-style.css">
+    <style>
+        .success-animation {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .success-animation .checkmark {
+            font-size: 5rem;
+            color: var(--success-color);
+            animation: scaleUp 0.5s ease-in-out;
+        }
+
+        @keyframes scaleUp {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .confirmation-message {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .confirmation-message h2 {
+            color: var(--success-color);
+            margin-bottom: 1rem;
+        }
+
+        .confirmation-message p {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .action-buttons a {
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <h1>Sim<span>Lover</span></h1>
+            <p class="slogan">Inspirado na excelência Simpress</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="success-animation">
+            <div class="checkmark">✔</div>
+        </div>
+
+        <div class="confirmation-message">
+            <h2>Requisição Enviada com Sucesso!</h2>
+            <p>Obrigado por usar o SimLover!</p>
+            <p>Sua requisição foi registrada e está aguardando aprovação.</p>
+            <p>Você receberá um e-mail quando houver atualizações sobre seu pedido.</p>
+        </div>
+
+        <div class="action-buttons">
+            <a href="simlover-requisicao.html" class="btn-primary">
+                <span class="icon">📝</span> Nova Requisição
+            </a>
+            <a href="consultar-requisicoes.php" class="btn-secondary">
+                <span class="icon">📊</span> Consultar Requisições
+            </a>
+        </div>
+    </div>
+
+    <footer class="simlover-footer">
+        <p>SimLover - Inspirado na excelência Simpress © 2025</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,37 @@
+# Ignorar arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignorar arquivos de editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ignorar logs e arquivos temporários
+*.log
+admin_notifications.log
+error.log
+
+# Ignorar backups
+backup/
+*.backup
+*.bak
+*.sql
+
+# Ignorar configurações locais (se houver)
+config.local.php
+
+# Ignorar dependências (se adicionar Composer futuramente)
+vendor/
+composer.lock
+
+# Ignorar arquivos de sessão PHP
+sessions/
+tmp/
+
+# Manter estrutura mas ignorar conteúdo de uploads (se adicionar)
+uploads/*
+!uploads/.gitkeep
