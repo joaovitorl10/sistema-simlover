@@ -84,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
             <p class="helper">Primeiro acesso: <strong>admin</strong> / <strong>Senha123!</strong><br>
             No primeiro login, você será solicitado a trocar para seu e-mail e senha pessoal.</p>
+            <p class="helper"><a href="admin-forgot-password.php">Esqueci minha senha</a></p>
         </div>
     </div>
 </body>

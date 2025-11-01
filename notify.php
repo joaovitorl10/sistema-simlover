@@ -20,6 +20,23 @@ if (!isset($FROM_NAME)) $FROM_NAME = 'SimLover Notificações';
 if (!isset($TEAMS_WEBHOOK_URL)) $TEAMS_WEBHOOK_URL = '';
 
 /**
+ * Envia e-mail de recuperação de senha
+ */
+function send_password_reset_email(string $to, string $subject, string $text, ?string $html = null): void {
+    global $FROM_EMAIL, $FROM_NAME;
+    $headers = [];
+    $headers[] = 'From: ' . sprintf('%s <%s>', $FROM_NAME, $FROM_EMAIL);
+    $headers[] = 'MIME-Version: 1.0';
+    $headers[] = 'Content-type: text/html; charset=UTF-8';
+    $body = $html ?: nl2br(htmlspecialchars($text));
+    @mail($to, $subject, $body, implode("\r\n", $headers));
+    
+    // Log da tentativa
+    $logLine = sprintf('[%s] Email recuperacao enviado para: %s%s', date('Y-m-d H:i:s'), $to, PHP_EOL);
+    file_put_contents(__DIR__ . '/admin_notifications.log', $logLine, FILE_APPEND | LOCK_EX);
+}
+
+/**
  * Envia notificação para administradores
  * - Sempre escreve em admin_notifications.log
  * - Se TEAMS_WEBHOOK_URL estiver configurado, envia mensagem para Teams/Slack

@@ -65,6 +65,10 @@ if ($conn->connect_error) {
 // Garante coluna must_change (para instalações antigas)
 $conn->query("ALTER TABLE admins ADD COLUMN must_change TINYINT(1) NOT NULL DEFAULT 0 AFTER password_hash");
 
+// Garante colunas de recuperação de senha (se tabela já existe)
+$conn->query("ALTER TABLE admins ADD COLUMN reset_token VARCHAR(64) NULL AFTER must_change");
+$conn->query("ALTER TABLE admins ADD COLUMN reset_expires DATETIME NULL AFTER reset_token");
+
 // Recria a definição garantindo a coluna quando tabela não existia
 $sql = "CREATE TABLE IF NOT EXISTS admins (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -72,6 +76,8 @@ $sql = "CREATE TABLE IF NOT EXISTS admins (
     nome VARCHAR(150) NULL,
     password_hash VARCHAR(255) NOT NULL,
     must_change TINYINT(1) NOT NULL DEFAULT 0,
+    reset_token VARCHAR(64) NULL,
+    reset_expires DATETIME NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 if ($conn->query($sql) === TRUE) {
