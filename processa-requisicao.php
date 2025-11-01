@@ -61,9 +61,19 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
     if ($conn->query($sql) === TRUE) {
         $id = $conn->insert_id;
-        // Registrar notificação simples para admins (arquivo de log)
-        $message = sprintf("[%s] Nova requisição ID=%d; solicitante=%s; email=%s; local=%s; servico=%s\n", date('Y-m-d H:i:s'), $id, $nome, $email, $localizacao, $servico);
-        file_put_contents(__DIR__ . '/admin_notifications.log', $message, FILE_APPEND | LOCK_EX);
+        // Notificações para administradores (arquivo de log + opcional e-mail/Teams)
+        require_once __DIR__ . '/notify.php';
+        $titulo = "Nova requisição #$id";
+        $texto = "Solicitante: $nome\nE-mail: $email\nLocal: $localizacao\nSKU: $codigo_peca\nQtd: $quantidade";
+        $html = "<h3>Nova requisição #$id</h3>"
+              . "<ul>"
+              . "<li><strong>Solicitante:</strong> " . htmlspecialchars($nome) . "</li>"
+              . "<li><strong>E-mail:</strong> " . htmlspecialchars($email) . "</li>"
+              . "<li><strong>Local:</strong> " . htmlspecialchars($localizacao) . "</li>"
+              . "<li><strong>SKU:</strong> " . htmlspecialchars($codigo_peca) . "</li>"
+              . "<li><strong>Quantidade:</strong> " . htmlspecialchars((string)$quantidade) . "</li>"
+              . "</ul>";
+        send_admin_notification($titulo, $texto, $html);
 
         // Redirecionar para página de confirmação
         header('Location: simlover-confirmacao.html');
