@@ -71,8 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
             <form method="POST">
                 <div class="form-group">
-                    <label for="user">Usuário</label>
-                    <input type="text" id="user" name="user" required>
+                    <label for="user">E-mail ou usuário</label>
+                    <input type="text" id="user" name="user" required placeholder="seuemail@exemplo.com">
                 </div>
                 <div class="form-group">
                     <label for="pass">Senha</label>
@@ -82,8 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button type="submit" class="btn-submit">Entrar</button>
                 </div>
             </form>
-            <p class="helper">Usuário padrão: <strong>admin</strong> • Senha padrão: <strong>Senha123!</strong><br>
-            Dica: você pode criar novos administradores na tabela <code>admins</code> (colunas: username, nome, password_hash).</p>
+            <p class="helper">Primeiro acesso: <strong>admin</strong> / <strong>Senha123!</strong><br>
+            No primeiro login, você será solicitado a trocar para seu e-mail e senha pessoal.</p>
         </div>
     </div>
 </body>

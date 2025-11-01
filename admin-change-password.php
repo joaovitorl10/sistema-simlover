@@ -11,7 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirm = $_POST['confirm'] ?? '';
 
     if (empty($new_user)) {
-        $error = 'O nome de usuário não pode estar vazio.';
+        $error = 'O e-mail não pode estar vazio.';
+    } elseif (!filter_var($new_user, FILTER_VALIDATE_EMAIL)) {
+        $error = 'Por favor, informe um e-mail válido.';
     } elseif (strlen($new) < 8) {
         $error = 'A nova senha deve ter pelo menos 8 caracteres.';
     } elseif ($new !== $confirm) {
@@ -37,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $check->execute();
                         $check->store_result();
                         if ($check->num_rows > 0) {
-                            $error = 'Este nome de usuário já está em uso.';
+                            $error = 'Este e-mail já está em uso por outro administrador.';
                             $check->close();
                         } else {
                             $check->close();
@@ -97,7 +99,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="container">
         <div class="card">
-            <h2 style="margin-top:0">Personalize seu acesso</h2>
+            <h2 style="margin-top:0">Defina seu e-mail e senha</h2>
+            <p style="color:#666;font-size:.9rem;margin-top:0">Use seu e-mail como login do sistema</p>
             <?php if ($error): ?><div class="error"><?php echo htmlspecialchars($error); ?></div><?php endif; ?>
             <?php if ($success): ?>
                 <div class="success"><?php echo htmlspecialchars($success); ?></div>
@@ -105,8 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php else: ?>
             <form method="POST">
                 <div class="form-group">
-                    <label for="new_user">Nome de usuário</label>
-                    <input type="text" id="new_user" name="new_user" value="<?php echo htmlspecialchars($_SESSION['admin_user'] ?? 'admin'); ?>" required>
+                    <label for="new_user">E-mail (login)</label>
+                    <input type="email" id="new_user" name="new_user" value="<?php echo htmlspecialchars($_SESSION['admin_user'] ?? 'admin'); ?>" required placeholder="seuemail@exemplo.com">
                     <small style="color:#666;font-size:.85rem">Você está usando: <strong><?php echo htmlspecialchars($_SESSION['admin_user']); ?></strong></small>
                 </div>
                 <div class="form-group">
