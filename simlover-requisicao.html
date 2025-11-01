@@ -90,9 +90,7 @@
                     const outroLocalInput = document.getElementById('outro-local');
                     const deptContainer = document.getElementById('department-container');
                     const companyContainer = document.getElementById('company-container');
-                    const servicesContainer = document.getElementById('services-container');
                     const departamentoSelect = document.getElementById('departamento');
-                    const servicoSelect = document.getElementById('servico');
 
                     if (localizacao === 'outro') {
                         // mostrar campos adicionais e esconder departamento/serviços
@@ -104,10 +102,7 @@
 
                         companyContainer.style.display = 'block';
 
-                        if (servicesContainer) {
-                            servicesContainer.style.display = 'none';
-                            if (servicoSelect) servicoSelect.required = false;
-                        }
+                        // campo de serviços removido
                     } else {
                         outroLocalContainer.style.display = 'none';
                         outroLocalInput.required = false;
@@ -117,10 +112,7 @@
 
                         companyContainer.style.display = 'none';
 
-                        if (servicesContainer) {
-                            servicesContainer.style.display = 'block';
-                            if (servicoSelect) servicoSelect.required = true;
-                        }
+                        // campo de serviços removido
                     }
                 }
                 // Inicializa o estado ao carregar
@@ -131,19 +123,7 @@
 
             <div class="form-section">
                 <h3>🖨️ Detalhes da Requisição</h3>
-                <div id="services-container">
-                <div class="form-group">
-                    <label for="servico">Serviços solicitados:</label>
-                    <select id="servico" name="servico" required>
-                        <option value="">Selecione uma opção</option>
-                        <option value="impressoras">Impressoras</option>
-                        <option value="manutencao">Suporte e manutenção</option>
-                        <option value="locacao">Locação de equipamentos</option>
-                        <option value="consumiveis">Consumíveis (toners)</option>
-                        <option value="outros">Outros</option>
-                    </select>
-                </div>
-                </div>
+                <!-- campo de serviços removido a pedido do usuário -->
 
                 <div class="form-group">
                     <label for="codigo_peca">Ex: CF280A (Toner HP 80A)</label>
